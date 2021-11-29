@@ -6,7 +6,7 @@
 /*   By: ocartier <ocartier@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 13:44:54 by ocartier          #+#    #+#             */
-/*   Updated: 2021/11/29 15:09:04 by ocartier         ###   ########lyon.fr   */
+/*   Updated: 2021/11/29 18:48:53 by ocartier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	ft_printf(const char *str, ...)
 				total += ft_printchar(va_arg(params, int));
 			else if (str[cur + 1] == 's')
 				total += ft_printstr(va_arg(params, char *));
+			else if (str[cur + 1] == 'p')
+				total += ft_printpointer(va_arg(params, void *));
 			cur++;
 		}
 		else

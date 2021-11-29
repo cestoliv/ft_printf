@@ -1,6 +1,7 @@
 SRCS		= ft_printf.c \
 			  print_utils/ft_printchar.c \
-			  print_utils/ft_printstr.c
+			  print_utils/ft_printstr.c \
+			  print_utils/ft_printpointer.c
 OBJS		= ${SRCS:.c=.o}
 NAME		= libftprintf.a
 CC			= gcc -Wall -Wextra -Werror

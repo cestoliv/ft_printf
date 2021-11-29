@@ -6,7 +6,7 @@
 /*   By: ocartier <ocartier@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 13:49:23 by ocartier          #+#    #+#             */
-/*   Updated: 2021/11/29 14:05:50 by ocartier         ###   ########lyon.fr   */
+/*   Updated: 2021/11/29 18:49:04 by ocartier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,5 @@ int	ft_printf(const char *str, ...);
 
 int	ft_printchar(char c);
 int	ft_printstr(char *str);
+int	ft_printpointer(void *ptr);
 #endif

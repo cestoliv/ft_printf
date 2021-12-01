@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printnum.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ocartier <ocartier@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 13:51:19 by ocartier          #+#    #+#             */
-/*   Updated: 2021/12/01 14:06:28 by ocartier         ###   ########lyon.fr   */
+/*   Created: 2021/12/01 14:10:53 by ocartier          #+#    #+#             */
+/*   Updated: 2021/12/01 14:11:05 by ocartier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
-#include <limits.h>
+#include "../ft_printf.h"
 
-int	main(void)
+int	ft_printnum(long nl)
 {
-	//int varInt = 5;
-	int total = ft_printf("char : %c, str : %s, pointer : %p, number : %d, unumber : %u, hex : %x",
-			'a',
-			"Yo 42 !",
-			LONG_MIN,
-			-100,
-			-5,
-			-1
-	);
+	int				total;
+	long	num;	
 
-	printf("\n%x", -1);
-
-	printf("\ntotal : %d", total);
+	total = 0;
+	num = nl;
+	if (nl < 0)
+	{
+		total += ft_printchar('-');
+		num = -nl;
+	}
+	if (num > 100)
+		total += ft_printnum(num / 10);
+	else if (num == 100)
+		total += ft_printstr("10");
+	else if ((num / 10) > 0)
+		total += ft_printchar((num / 10) + '0');
+	total += ft_printchar((num % 10) + '0');
+	return (total);
 }

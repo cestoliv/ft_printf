@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printbnum.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ocartier <ocartier@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 13:51:19 by ocartier          #+#    #+#             */
-/*   Updated: 2021/12/01 14:06:28 by ocartier         ###   ########lyon.fr   */
+/*   Created: 2021/12/01 14:12:32 by ocartier          #+#    #+#             */
+/*   Updated: 2021/12/01 14:12:49 by ocartier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
-#include <limits.h>
+#include "../ft_printf.h"
 
-int	main(void)
+int	ft_printbnum(int nbr, char *base)
 {
-	//int varInt = 5;
-	int total = ft_printf("char : %c, str : %s, pointer : %p, number : %d, unumber : %u, hex : %x",
-			'a',
-			"Yo 42 !",
-			LONG_MIN,
-			-100,
-			-5,
-			-1
-	);
+	unsigned int	base_len;
+	unsigned int	nbrl;
+	int				total;
 
-	printf("\n%x", -1);
-
-	printf("\ntotal : %d", total);
+	total = 0;
+	nbrl = nbr;
+	base_len = ft_strlen(base);
+	if (nbrl >= base_len)
+	{
+		total += ft_printbnum(nbrl / base_len, base);
+		total += ft_printbnum(nbrl % base_len, base);
+	}
+	else
+	{
+		total += ft_printchar(base[nbrl]);
+	}
+	return (total);
 }
+

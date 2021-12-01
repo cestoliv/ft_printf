@@ -1,44 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printpointer.c                                  :+:      :+:    :+:   */
+/*   ft_printunum.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ocartier <ocartier@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 16:44:10 by ocartier          #+#    #+#             */
-/*   Updated: 2021/12/01 10:55:57 by ocartier         ###   ########lyon.fr   */
+/*   Created: 2021/12/01 14:11:31 by ocartier          #+#    #+#             */
+/*   Updated: 2021/12/01 14:11:41 by ocartier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-static int print_long_as_hex(long unsigned addr)
+int	ft_printunum(unsigned long nl)
 {
-	char	c;
-	int		total;
+	int				total;
+	unsigned long	num;	
 
 	total = 0;
-	if (addr >= 16)
+	num = nl;
+	if (nl < 0)
 	{
-		total += print_long_as_hex(addr / 16);
-		total += print_long_as_hex(addr % 16);
+		total += ft_printchar('-');
+		num = -nl;
 	}
-	else
-	{
-		c = (addr % 16) + '0';
-		if ((addr % 16) > 9)
-			c = ((addr % 16) + 87);
-		write(1, &c, 1);
-		total++;
-	}
+	if (num > 100)
+		total += ft_printnum(num / 10);
+	else if (num == 100)
+		total += ft_printstr("10");
+	else if ((num / 10) > 0)
+		total += ft_printchar((num / 10) + '0');
+	total += ft_printchar((num % 10) + '0');
 	return (total);
-}
-
-int	ft_printpointer(void *ptr)
-{
-	long	addr;
-
-	addr = (long unsigned)ptr;
-	write(1, "0x", 2);
-	return (print_long_as_hex(addr) + 2);
 }

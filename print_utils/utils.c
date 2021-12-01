@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ocartier <ocartier@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 13:51:19 by ocartier          #+#    #+#             */
-/*   Updated: 2021/12/01 14:06:28 by ocartier         ###   ########lyon.fr   */
+/*   Created: 2021/12/01 13:17:29 by ocartier          #+#    #+#             */
+/*   Updated: 2021/12/01 13:18:27 by ocartier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
-#include <limits.h>
+#include "../ft_printf.h"
 
-int	main(void)
+int	ft_strlen(char *str)
 {
-	//int varInt = 5;
-	int total = ft_printf("char : %c, str : %s, pointer : %p, number : %d, unumber : %u, hex : %x",
-			'a',
-			"Yo 42 !",
-			LONG_MIN,
-			-100,
-			-5,
-			-1
-	);
+	int	cur;
 
-	printf("\n%x", -1);
-
-	printf("\ntotal : %d", total);
+	cur = 0;
+	if (str)
+	{
+		while (str[cur])
+			cur++;
+	}
+	return (cur);
 }

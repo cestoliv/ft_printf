@@ -6,7 +6,7 @@
 /*   By: ocartier <ocartier@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 14:12:32 by ocartier          #+#    #+#             */
-/*   Updated: 2021/12/01 14:12:49 by ocartier         ###   ########lyon.fr   */
+/*   Updated: 2021/12/01 14:24:09 by ocartier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,3 @@ int	ft_printbnum(int nbr, char *base)
 	}
 	return (total);
 }
-

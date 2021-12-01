@@ -6,13 +6,13 @@
 /*   By: ocartier <ocartier@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 16:44:10 by ocartier          #+#    #+#             */
-/*   Updated: 2021/12/01 10:55:57 by ocartier         ###   ########lyon.fr   */
+/*   Updated: 2021/12/01 14:25:04 by ocartier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-static int print_long_as_hex(long unsigned addr)
+static int	print_long_as_hex(long unsigned addr)
 {
 	char	c;
 	int		total;

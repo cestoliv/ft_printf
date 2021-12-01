@@ -6,7 +6,7 @@
 /*   By: ocartier <ocartier@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 14:10:53 by ocartier          #+#    #+#             */
-/*   Updated: 2021/12/01 14:11:05 by ocartier         ###   ########lyon.fr   */
+/*   Updated: 2021/12/01 14:24:32 by ocartier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_printnum(long nl)
 {
-	int				total;
+	int		total;
 	long	num;	
 
 	total = 0;

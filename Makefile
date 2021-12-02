@@ -18,11 +18,11 @@ all:		${NAME}
 $(NAME):	${OBJS} ft_printf.h
 			ar rcs ${NAME} ${OBJS}
 
-bonus:		${OBJS_BONUS} ft_printf.h
-			ar rcs ${NAME} ${OBJS_BONUS}
+bonus:		${OBJS} ft_printf.h
+			ar rcs ${NAME} ${OBJS}
 
 clean:
-			rm -f ${OBJS} ${OBJS_BONUS}
+			rm -f ${OBJS}
 
 fclean:		clean
 			rm -f ${NAME}

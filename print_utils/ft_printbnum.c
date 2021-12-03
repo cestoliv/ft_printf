@@ -6,7 +6,7 @@
 /*   By: ocartier <ocartier@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 14:12:32 by ocartier          #+#    #+#             */
-/*   Updated: 2021/12/02 14:47:16 by ocartier         ###   ########lyon.fr   */
+/*   Updated: 2021/12/02 15:34:53 by ocartier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int print_number_base(int nbr, char *base)
 	}
 	else
 	{
-		total += ft_printchar(base[nbrl]);
+		total += print_char(base[nbrl]);
 	}
 	return (total);
 }

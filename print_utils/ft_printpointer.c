@@ -6,7 +6,7 @@
 /*   By: ocartier <ocartier@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 16:44:10 by ocartier          #+#    #+#             */
-/*   Updated: 2021/12/01 14:25:04 by ocartier         ###   ########lyon.fr   */
+/*   Updated: 2021/12/02 17:51:44 by ocartier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	ft_printpointer(void *ptr)
 	long	addr;
 
 	addr = (long unsigned)ptr;
+	if (addr == 0)
+		return (print_str("(nil)"));
 	write(1, "0x", 2);
 	return (print_long_as_hex(addr) + 2);
 }

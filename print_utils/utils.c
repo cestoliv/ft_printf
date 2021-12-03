@@ -6,7 +6,7 @@
 /*   By: ocartier <ocartier@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 13:17:29 by ocartier          #+#    #+#             */
-/*   Updated: 2021/12/02 14:36:57 by ocartier         ###   ########lyon.fr   */
+/*   Updated: 2021/12/02 17:55:20 by ocartier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,15 @@ int	ft_atoi(const char *str, int *o_cur)
 	}
 	return (num);
 }
+
+int	in_set(char c, char *set)
+{
+	int	cur;
+
+	cur = -1;
+	while (set[++cur])
+		if (set[cur] == c)
+			return (1);
+	return (0);
+}
+

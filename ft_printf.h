@@ -6,7 +6,7 @@
 /*   By: ocartier <ocartier@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 13:49:23 by ocartier          #+#    #+#             */
-/*   Updated: 2021/12/03 12:47:35 by ocartier         ###   ########lyon.fr   */
+/*   Updated: 2021/12/03 14:23:32 by ocartier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef struct s_opt
 	int	dot;
 	int	precision;
 	int offset;
+	int	zero;
+	int	zero_offset;
 }	t_opt;
 
 int	ft_printf(const char *str, ...);

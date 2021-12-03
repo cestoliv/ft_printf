@@ -6,7 +6,7 @@
 /*   By: ocartier <ocartier@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 13:44:54 by ocartier          #+#    #+#             */
-/*   Updated: 2021/12/03 13:04:06 by ocartier         ###   ########lyon.fr   */
+/*   Updated: 2021/12/03 14:23:12 by ocartier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int	process(const char *str, va_list *params, int *cur)
 	opt.min_width = 0;
 	opt.dot = 0;
 	opt.precision = 0;
+	opt.zero = 0;
+	opt.zero_offset = 0;
 	opt.offset = 0;
 	total = 0;
 	while (in_set(str[(*cur) + 1], "0123456789# +-."))
@@ -59,6 +61,11 @@ int	process(const char *str, va_list *params, int *cur)
 			opt.space = 1;
 		else if (str[(*cur) + 1] == '+')
 			opt.plus = 1;
+		else if (str[(*cur) + 1] == '0')
+		{
+			opt.zero_offset = ft_atoi(str + (*cur) + 2, cur);
+			opt.zero = 1;
+		}
 		else if (str[(*cur) + 1] == '-')
 		{
 			opt.offset = ft_atoi(str + (*cur) + 2, cur);

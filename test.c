@@ -6,7 +6,7 @@
 /*   By: ocartier <ocartier@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 13:51:19 by ocartier          #+#    #+#             */
-/*   Updated: 2021/12/03 13:03:21 by ocartier         ###   ########lyon.fr   */
+/*   Updated: 2021/12/03 14:32:35 by ocartier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ int	main(void)
 			42
 	);
 	*/
-	total += ft_printf(", string precision : %5s, num precision : %-1.8d",
+	total += ft_printf(", string precision : %5s, num precision : %0014.2x",
 			"-42",
-			-10
+			-1
 	);
+	total += ft_printf("\n%020.21x", 8000);
+	total += ft_printf("\n%0014.2x %020x %00020.x %000.5x", -1, 3, 30, -1);
 	printf("\ntotal : %d", total);
 }

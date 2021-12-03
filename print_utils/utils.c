@@ -6,7 +6,7 @@
 /*   By: ocartier <ocartier@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 13:17:29 by ocartier          #+#    #+#             */
-/*   Updated: 2021/12/02 17:55:20 by ocartier         ###   ########.fr       */
+/*   Updated: 2021/12/03 13:01:12 by ocartier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@ int	ft_strlen(char *str)
 	int	cur;
 
 	cur = 0;
-	if (str)
-	{
-		while (str[cur])
-			cur++;
-	}
+	if (!str)
+		return (cur);
+	while (str[cur])
+		cur++;
 	return (cur);
 }
 
@@ -38,6 +37,10 @@ int	ft_atoi(const char *str, int *o_cur)
 		cur++;
 		(*o_cur)++;
 	}
+	/*
+	if (cur > 0)
+		(*o_cur)--;
+		*/
 	return (num);
 }
 

@@ -2,5 +2,7 @@
 *.out
 *.o
 *.a
-printfTester
+*.out.*
+printfTester/
+ft_printf_tester/
 pft/

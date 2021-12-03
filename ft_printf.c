@@ -6,7 +6,7 @@
 /*   By: ocartier <ocartier@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 13:44:54 by ocartier          #+#    #+#             */
-/*   Updated: 2021/12/02 17:57:11 by ocartier         ###   ########.fr       */
+/*   Updated: 2021/12/03 13:04:06 by ocartier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	process_normal(const char *str, va_list *params, t_opt opt)
 	else if (str[1] == 's')
 		total += ft_printstr(va_arg(*params, char *), opt);
 	else if (str[1] == 'p')
-		total += ft_printpointer(va_arg(*params, void *));
+		total += ft_printpointer(va_arg(*params, void *), opt);
 	else if (str[1] == 'd' || str[1] == 'i')
 		total += ft_printnum(va_arg(*params, int), opt);
 	else if (str[1] == 'u')
@@ -36,6 +36,7 @@ int	process_normal(const char *str, va_list *params, t_opt opt)
 	return (total);
 }
 
+#include <stdio.h>
 int	process(const char *str, va_list *params, int *cur)
 {
 	int		total;
@@ -46,8 +47,11 @@ int	process(const char *str, va_list *params, int *cur)
 	opt.plus = 0;
 	opt.minus = 0;
 	opt.min_width = 0;
+	opt.dot = 0;
+	opt.precision = 0;
+	opt.offset = 0;
 	total = 0;
-	while (in_set(str[(*cur) + 1], "# +-"))
+	while (in_set(str[(*cur) + 1], "0123456789# +-."))
 	{
 		if (str[(*cur) + 1] == '#')
 			opt.sharp = 1;
@@ -56,10 +60,22 @@ int	process(const char *str, va_list *params, int *cur)
 		else if (str[(*cur) + 1] == '+')
 			opt.plus = 1;
 		else if (str[(*cur) + 1] == '-')
+		{
+			opt.offset = ft_atoi(str + (*cur) + 2, cur);
 			opt.minus = 1;
+		}
+		else if (str[(*cur) + 1] == '.')
+		{
+			opt.precision = ft_atoi(str + (*cur) + 2, cur);
+			opt.dot = 1;
+		}
+		else
+		{
+			opt.min_width = ft_atoi(str + (*cur) + 1, cur);
+			(*cur)--;
+		}
 		(*cur)++;
 	}
-	opt.min_width = ft_atoi(str + (*cur) + 1, cur);
 	total += process_normal(str + (*cur), params, opt);
 	(*cur)++;
 	return (total);

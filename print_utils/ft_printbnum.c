@@ -6,7 +6,7 @@
 /*   By: ocartier <ocartier@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 14:12:32 by ocartier          #+#    #+#             */
-/*   Updated: 2021/12/02 15:34:53 by ocartier         ###   ########.fr       */
+/*   Updated: 2021/12/03 11:33:53 by ocartier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,45 @@ static int print_number_base(int nbr, char *base)
 	return (total);
 }
 
+static int  get_hex_size(int nbr)
+{
+    int    			 total;
+	unsigned int	nbrl;
+
+    total = 0;
+	nbrl = nbr;
+    if (nbrl >= 16)
+    {
+        total += get_hex_size(nbrl / 16);
+        total += get_hex_size(nbrl % 16);
+    }
+    else
+        total++;
+    return (total);
+}
+
+
 int	ft_printbnum(int nbr, int is_maj, t_opt opt)
 {
 	int	total;
+	int	len;
 
 	total = 0;
+	len = get_hex_size(nbr);
+
+	if (opt.sharp && nbr != 0)
+		total += 2;
+	if (opt.min_width > 0)
+	{
+		while (len + total < opt.min_width)
+			total += print_char(' ');
+	}
 	if (opt.sharp && nbr != 0)
 	{
 		if (is_maj)
-			total += print_str("0X");
+			print_str("0X");
 		else
-			total += print_str("0x");
+			print_str("0x");
 	}
 	if (is_maj)
 		total += print_number_base(nbr, "0123456789ABCDEF");

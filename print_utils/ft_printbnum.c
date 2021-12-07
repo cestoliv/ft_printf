@@ -6,13 +6,13 @@
 /*   By: ocartier <ocartier@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 14:12:32 by ocartier          #+#    #+#             */
-/*   Updated: 2021/12/03 14:32:33 by ocartier         ###   ########lyon.fr   */
+/*   Updated: 2021/12/07 10:41:42 by ocartier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-static int print_number_base(int nbr, char *base)
+static int	print_number_base(int nbr, char *base)
 {
 	unsigned int	base_len;
 	unsigned int	nbrl;
@@ -33,45 +33,75 @@ static int print_number_base(int nbr, char *base)
 	return (total);
 }
 
-static int  get_hex_size(int nbr)
+static int	get_hex_size(int nbr)
 {
-    int    			 total;
+	int				total;
 	unsigned int	nbrl;
 
-    total = 0;
+	total = 0;
 	nbrl = nbr;
-    if (nbrl >= 16)
-    {
-        total += get_hex_size(nbrl / 16);
-        total += get_hex_size(nbrl % 16);
-    }
-    else
-        total++;
-    return (total);
+	if (nbrl >= 16)
+	{
+		total += get_hex_size(nbrl / 16);
+		total += get_hex_size(nbrl % 16);
+	}
+	else
+		total++;
+	return (total);
 }
 
+static int	get_values(char	*prefix, int *len_prec, t_opt *opt, int nbr)
+{
+	int		len;
+
+	len = get_hex_size(nbr);
+	*len_prec = len;
+	if (opt->precision > len)
+		*len_prec = opt->precision;
+	*prefix = '0';
+	if (opt->zero && opt->dot && opt->zero_offset > opt->precision)
+		*prefix = ' ';
+	if (!opt->zero)
+		*prefix = ' ';
+	if (opt->zero)
+		opt->min_width = opt->zero_offset;
+	if (opt->precision > opt->min_width)
+		opt->min_width = opt->precision;
+	return (len);
+}
+
+static int	print_x(int is_maj, int len, int nbr, t_opt opt)
+{
+	int	total;
+
+	total = 0;
+	if (nbr == 0 && opt.min_width && opt.min_width < len)
+		total += print_char(' ');
+	else if (nbr == 0 && opt.dot && !opt.precision && opt.min_width >= len)
+		total += print_char(' ');
+	else if (!(nbr == 0 && opt.dot && !opt.precision))
+	{
+		if (is_maj)
+			total += print_number_base(nbr, "0123456789ABCDEF");
+		else
+			total += print_number_base(nbr, "0123456789abcdef");
+	}
+	return (total);
+}
 
 int	ft_printbnum(int nbr, int is_maj, t_opt opt)
 {
 	int		total;
 	int		len;
 	char	prefix;
+	int		len_prec;
 
-	if (opt.dot && opt.precision == 0 && nbr == 0)
-		return (0);
 	total = 0;
-	prefix = ' ';
-	if ((opt.dot || opt.zero) && !(opt.dot && opt.zero))
-		prefix = '0';
-	len = get_hex_size(nbr);
-	if (opt.sharp && nbr != 0)
-		len += 2;
-	if (opt.precision < len)
-		opt.precision = 0;
-	while (len + total + opt.precision < opt.zero_offset)
-		total += print_char('0');
-	while (len + total < opt.min_width || len + total < opt.precision)
+	len = get_values(&prefix, &len_prec, &opt, nbr);
+	while (len_prec + total < opt.min_width)
 		total += print_char(prefix);
+	while (len + total < opt.min_width)
+		total += print_char('0');
 	if (opt.sharp && nbr != 0)
 	{
 		if (is_maj)
@@ -79,10 +109,7 @@ int	ft_printbnum(int nbr, int is_maj, t_opt opt)
 		else
 			total += print_str("0x");
 	}
-	if (is_maj)
-		total += print_number_base(nbr, "0123456789ABCDEF");
-	else
-		total += print_number_base(nbr, "0123456789abcdef");
+	total += print_x(is_maj, len, nbr, opt);
 	while (total < opt.offset)
 		total += print_char(' ');
 	return (total);

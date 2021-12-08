@@ -24,7 +24,7 @@ typedef struct s_opt
 	int	minus;
 	int	dot;
 	int	precision;
-	int offset;
+	int	offset;
 	int	zero;
 	int	zero_offset;
 }		t_opt;

@@ -6,11 +6,25 @@
 /*   By: ocartier <ocartier@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 13:17:29 by ocartier          #+#    #+#             */
-/*   Updated: 2021/12/03 13:01:12 by ocartier         ###   ########lyon.fr   */
+/*   Updated: 2021/12/08 11:07:10 by ocartier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+
+void	init_opt(t_opt *opt)
+{
+	opt->sharp = 0;
+	opt->space = 0;
+	opt->plus = 0;
+	opt->minus = 0;
+	opt->min_width = 0;
+	opt->dot = 0;
+	opt->precision = 0;
+	opt->zero = 0;
+	opt->zero_offset = 0;
+	opt->offset = 0;
+}
 
 int	ft_strlen(char *str)
 {
@@ -37,10 +51,6 @@ int	ft_atoi(const char *str, int *o_cur)
 		cur++;
 		(*o_cur)++;
 	}
-	/*
-	if (cur > 0)
-		(*o_cur)--;
-		*/
 	return (num);
 }
 
@@ -55,3 +65,24 @@ int	in_set(char c, char *set)
 	return (0);
 }
 
+int	print_number(long nl)
+{
+	int		total;
+	long	num;	
+
+	total = 0;
+	num = nl;
+	if (nl < 0)
+	{
+		total += print_char('-');
+		num = -nl;
+	}
+	if (num > 100)
+		total += print_number(num / 10);
+	else if (num == 100)
+		total += print_str("10");
+	else if ((num / 10) > 0)
+		total += print_char((num / 10) + '0');
+	total += print_char((num % 10) + '0');
+	return (total);
+}

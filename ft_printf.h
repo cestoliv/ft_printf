@@ -6,7 +6,7 @@
 /*   By: ocartier <ocartier@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 13:49:23 by ocartier          #+#    #+#             */
-/*   Updated: 2021/12/03 14:23:32 by ocartier         ###   ########lyon.fr   */
+/*   Updated: 2021/12/08 11:07:55 by ocartier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,22 @@ typedef struct s_opt
 	int offset;
 	int	zero;
 	int	zero_offset;
-}	t_opt;
+}		t_opt;
 
-int	ft_printf(const char *str, ...);
+int		ft_printf(const char *str, ...);
 
-int	ft_printchar(char c, t_opt opt);
-int	ft_printstr(char *str, t_opt opt);
-int	ft_printpointer(void *ptr, t_opt opt);
-int	ft_printnum(long nl, t_opt opt);
-int	ft_printunum(unsigned long nl, t_opt opt);
-int	ft_printbnum(int nl, int is_maj, t_opt opt);
+int		ft_printchar(char c, t_opt opt);
+int		ft_printstr(char *str, t_opt opt);
+int		ft_printpointer(void *ptr, t_opt opt);
+int		ft_printnum(long nl, t_opt opt);
+int		ft_printunum(unsigned long nl, t_opt opt);
+int		ft_printbnum(int nl, int is_maj, t_opt opt);
 
-int	ft_strlen(char *str);
-int	ft_atoi(const char *str, int *o_cur);
-int	print_str(char *str);
-int	print_char(char c);
-int	in_set(char c, char *set);
+int		ft_strlen(char *str);
+int		ft_atoi(const char *str, int *o_cur);
+int		print_str(char *str);
+int		print_char(char c);
+int		in_set(char c, char *set);
+int		print_number(long nl);
+void	init_opt(t_opt *opt);
 #endif

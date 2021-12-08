@@ -6,7 +6,7 @@
 /*   By: ocartier <ocartier@student.42lyon.f>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 13:58:41 by ocartier          #+#    #+#             */
-/*   Updated: 2021/12/03 13:11:44 by ocartier         ###   ########lyon.fr   */
+/*   Updated: 2021/12/08 10:57:06 by ocartier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	print_char(char c)
 int	ft_printchar(char c, t_opt opt)
 {
 	int	cur;
-	
+
 	cur = 0;
 	while (cur + 1 < opt.min_width)
 		cur += print_char(' ');
